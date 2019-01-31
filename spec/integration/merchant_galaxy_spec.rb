@@ -3,7 +3,7 @@ require 'open3'
 describe 'Merchant\'s Guide to the Galaxy' do
   context 'without a file argument' do
     it 'opens the default input.txt file and returns the correct output' do
-      command = 'ruby merchant_guide_to_the_galaxy.rb'
+      command = 'ruby merchant_galaxy.rb'
       expected_output = File.open('spec/fixtures/expected_output.txt').read
 
       stdout, _, _ = Open3.capture3(command)
@@ -12,7 +12,7 @@ describe 'Merchant\'s Guide to the Galaxy' do
     end
 
     it 'does not print anything to stderr' do
-      command = 'ruby merchant_guide_to_the_galaxy.rb'
+      command = 'ruby merchant_galaxy.rb'
 
       _, stderr, _ = Open3.capture3(command)
 
@@ -22,7 +22,7 @@ describe 'Merchant\'s Guide to the Galaxy' do
 
   context 'opening a different file' do
     it 'returns the correct output' do
-      command = 'ruby merchant_guide_to_the_galaxy.rb spec/fixtures/test_input.txt'
+      command = 'ruby merchant_galaxy.rb spec/fixtures/test_input.txt'
       expected_output = File.open('spec/fixtures/test_output.txt').read
 
       stdout, _, _ = Open3.capture3(command)
@@ -31,7 +31,7 @@ describe 'Merchant\'s Guide to the Galaxy' do
     end
 
     it 'does not print anything to stderr' do
-      command = 'ruby merchant_guide_to_the_galaxy.rb'
+      command = 'ruby merchant_galaxy.rb'
 
       _, stderr, _ = Open3.capture3(command)
 
@@ -41,7 +41,7 @@ describe 'Merchant\'s Guide to the Galaxy' do
 
   context 'with an invalid file' do
     it 'prints an error message' do
-      command = 'ruby merchant_guide_to_the_galaxy.rb inexistent_file.txt'
+      command = 'ruby merchant_galaxy.rb inexistent_file.txt'
 
       stdout, _, _ = Open3.capture3(command)
 
@@ -50,7 +50,7 @@ describe 'Merchant\'s Guide to the Galaxy' do
     end
 
     it 'does not print anything to stderr' do
-      command = 'ruby merchant_guide_to_the_galaxy.rb'
+      command = 'ruby merchant_galaxy.rb'
 
       _, stderr, _ = Open3.capture3(command)
 

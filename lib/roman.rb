@@ -20,5 +20,18 @@ class Roman
   # Roman numeral regex validation
   VALID_REGEX = /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/
 
+  def self.to_i(roman)
+    return 0 unless roman.match? VALID_REGEX
 
+    result = 0
+
+    ROMAN_UNIT.keys.each do |roman_value|
+      while roman.start_with?(roman_value)
+        roman = roman.slice(roman_value.size, roman.size)
+        result += ROMAN_UNIT[roman_value]
+      end
+    end
+
+    result
+  end
 end

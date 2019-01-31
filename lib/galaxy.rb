@@ -17,7 +17,7 @@ class Galaxy
 
     roman.to_i(roman_values.join)
   end
-
+ 
   private
 
   def value_of_unit(name)

@@ -83,11 +83,34 @@ Example:
 `how much is pish pish pish pish pish ?` will result in: `That's not even a real
 unit!`
 
+## Architecture
+
+It consists of `InputParser`, `Galaxy`, `Metal` and `Roman` classes.
+
+*  `InputParser` parses each line and performs the corresponding action (like adding galactic units or coversions).
+*  `Galaxy` is responsible of managing galactic units and their conversion to integer.
+*  `Metal` handles metal units like `Silver` and `Iron`, allowing us to either add new units or convert existing ones to
+`Credits`.
+*  `Roman` performs the conversion between Roman numerals and integers.
+
+`InputParser` depends on `Galaxy` and `Metal`, which are both injected parameters. `Galaxy` for instance depends on `Roman`,
+a direct dependency. At last, `Metal` depends on `Galaxy`, which is also injected.
 
 ## Usage
 This ships with a "helper" script `merchant_galaxy.rb`. It reads from `input.txt` file by default.
 Modify this file at your will :)
 
+#### Reading from the default `input.txt` file
+`ruby merchant_galaxy.rb`
+
+#### Reading from a different file
+`ruby merchant_galaxy.rb different-file.txt`
+
+## Testing
+Tests are written using `rspec` and can be run by using `rspec` or `rspec spec/test_file` commands.
+
+There are both `unit` and `integration` specs and they can be found in `spec/` and `spec/integration` directories
+respectively.
 
 ## Dependencies
 *  `rspec >= 3.7`

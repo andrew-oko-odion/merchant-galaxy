@@ -9,6 +9,20 @@ class InputProcessing
     @metal = metal
   end
 
+  def process_line(line)
+    case line
+    when /^([a-z]*) is (I|V|X|L|C|D|M)$/
+      galaxy.add_unit(name: $1, roman_equivalent: $2)
+    when /^([a-z ]+) ([A-Z][a-z]+) is (\d+) Credits$/
+      metal.add_element(galactic_units: $1.split, name: $2, credits: $3)
+    when /^how much is ([a-z ]+)\?$/
+      galactic_conversion(galactic_units: $1)
+    when /^how many Credits is ([a-z ]+) ([A-Z][a-z]+)/
+      metal_conversion(galactic_units: $1, element: $2)
+    else
+      puts ERROR_MSG
+    end
+  end
 
   private
 
